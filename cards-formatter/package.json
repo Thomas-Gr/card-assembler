@@ -1,0 +1,18 @@
+{
+  "name": "assembler",
+  "version": "1.0.0",
+  "description": "Interactive picture extractor",
+  "main": "app.js",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "express": "^4.17.1",
+    "image-clipper": "^0.4.4",
+    "image-size": "^0.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arca",
+  "license": "ISC"
+}

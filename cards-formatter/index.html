@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body style="margin: 0; height: 100%; overflow: hidden;">
+
+<canvas id="myCanvas" width="800" height="1000">
+	Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+<div id="position" style="position: fixed; right: 0px; top: 0px;"></div>
+<div id="cardId" style="position: fixed; right: 0px; top: 30px;"></div>
+
+<script>
+	var queryDict = {}
+	location.search.substr(1).split("&").forEach(item => queryDict[item.split("=")[0]] = item.split("=")[1])
+
+	var cardIndex = queryDict.card == null ? 0 : parseInt(queryDict.card);
+	var moveLeftSide = true;
+	var opacity = 0.5;
+	var scale = 3;
+
+	var positions = [
+		[29, 47, 191, 135],
+		[35, 43, 198, 118],
+		[23, 83, 206, 114],
+		[23, 38, 204, 125]
+	];
+
+	var position = positions[0];
+
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.fillStyle = "blue";
+
+	var images = [];
+	var loadedImages = [];
+
+	$.getJSON("images_list.json", data => {
+	  images = data;
+
+	  for (entry of data) {
+	  	var image = new Image();
+	  	image.src = entry.path;
+
+	  	loadedImages.push(image);
+	  }
+	  refresh();
+	});
+
+	$(this).keydown(e => {
+		if (e.which == ch('Q')) {
+	        moveLeftSide = !moveLeftSide;
+    	} else if (e.which == ch('0')) {
+	    	cardIndex = cardIndex + 1;
+    	} else if (e.which == ch('W')) {
+    		if (opacity == 0.5) opacity = 1.0;
+    		else opacity = 0.5;
+    	} else if (e.which >= ch('1') && e.which <= ch('4')) {
+			position = positions[e.which - ch('1')];
+    	} else if (e.which == ch('N')) {
+	    	next();
+	    } else if (e.which == ch('P')) {
+	    	prev();
+	    } else if (moveLeftSide) {
+		    if (e.which == 37) { // left
+		        position[0]--;
+		        position[2]++;
+		    } else if (e.which == 39) { // right
+		    	position[0]++;
+		        position[2]--;
+		    } else if (e.which == 38) { // up
+		    	position[1]--;
+		        position[3]++;
+		    } else if (e.which == 40) { // down
+		    	position[1]++;
+		        position[3]--;
+		    }
+		} else {
+			if (e.which == 37) { // left
+		        position[2]--;
+		    } else if (e.which == 39) { // right
+		        position[2]++;
+		    } else if (e.which == 38) { // up
+		        position[3]--;
+		    } else if (e.which == 40) { // down
+		        position[3]++;
+		    }		    
+		}
+
+		refresh();
+	})
+
+	function loadImage() {
+		ctx.drawImage(
+			loadedImages[cardIndex], 
+			0, 0, 
+			images[cardIndex].width, images[cardIndex].height,
+			0, 0,
+			images[cardIndex].width * scale, images[cardIndex].height * scale);
+	}
+
+	function fillOutsideRectangle() {
+		ctx.globalAlpha = opacity;
+	    ctx.fillRect(
+	    	0, 0, 
+	    	images[cardIndex].width * scale, position[1] * scale);
+	    ctx.fillRect(
+	    	0, 0, 
+	    	position[0] * scale, images[cardIndex].height * scale);
+	    ctx.fillRect(
+	    	(position[0] + position[2]) * scale, 0,
+	    	(images[cardIndex].width - (position[0] + position[2])) * scale, images[cardIndex].height * 3);
+	    ctx.fillRect(
+	    	0, (position[1] + position[3]) * scale, 
+	    	images[cardIndex].width * scale, (images[cardIndex].height - (position[1] + position[3])) * scale);
+	    ctx.globalAlpha = 1.0;
+	}
+
+	function next() {
+	  save();
+	  cardIndex = cardIndex + 1;
+	  refresh();
+	}
+
+	function prev() {
+	  save();
+	  cardIndex = cardIndex - 1;
+	  refresh();
+	}
+
+	function refresh() {
+		showCardIndex();
+		showPosition();
+	    loadImage();
+	  	fillOutsideRectangle();
+	}
+
+	function showPosition() {
+		$("#position").text(position);
+	}
+
+	function showCardIndex() {
+		$("#cardId").text(cardIndex);
+	}
+
+	function save() {
+		$.ajax({url: "save?id=" + cardIndex + "&position=" + position}); 
+	}
+
+	function ch(c) {
+		return c.charCodeAt(0);
+	}
+</script>
+
+</body>
+</html>
