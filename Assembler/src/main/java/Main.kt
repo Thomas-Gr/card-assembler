@@ -1,8 +1,7 @@
 import ImageDataExtractor.computeAllImageData
+import common.INPUT_FOLDER
+import common.OUTPUT_CARD
 import java.io.File
-
-private const val INPUT_FOLDER = "xxx"
-private const val OUTPUT_CARD = "xxx"
 
 fun main() {
   val bindings = computeAllImageData(INPUT_FOLDER)
