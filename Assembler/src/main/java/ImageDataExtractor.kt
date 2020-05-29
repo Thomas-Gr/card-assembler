@@ -8,6 +8,7 @@ object ImageDataExtractor {
     return File(path)
         .walk()
         .filter { a -> !a.isDirectory }
+        .filter { a -> !a.isHidden }
         .map { it.absolutePath to extractAverageColor(it.absolutePath) }
         .toMap()
   }

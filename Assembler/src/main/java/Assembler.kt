@@ -10,7 +10,7 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
 
-private const val MAXIMUM_USAGE = 63
+private const val MAXIMUM_USAGE = 20
 
 private const val W = 3
 private const val H = 2

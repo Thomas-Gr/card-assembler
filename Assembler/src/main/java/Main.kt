@@ -12,8 +12,16 @@ fun main() {
   File(INPUT_FOLDER)
       .walk()
       .filter { a -> !a.isDirectory }
-      .take(20)
+      .toList()
+      .parallelStream()
       .forEach {
-        assembler.listFilesForFolder(INPUT_FOLDER + it.name, OUTPUT_CARD + it.name)
+        try {
+          assembler.listFilesForFolder(
+              INPUT_FOLDER + it.name,
+              OUTPUT_CARD + it.name)
+        } catch (e: Exception) {
+          println(it)
+          e.printStackTrace()
+        }
       }
 }
