@@ -14,12 +14,15 @@
 
 <script>
 	var queryDict = {}
+	const skipCardsDone = true;
 	location.search.substr(1).split("&").forEach(item => queryDict[item.split("=")[0]] = item.split("=")[1])
 
 	var cardIndex = queryDict.card == null ? 0 : parseInt(queryDict.card);
 	var moveLeftSide = true;
 	var opacity = 0.5;
 	var scale = 3;
+
+	var existingFiles = [];
 
 	var positions = [
 		[29, 47, 191, 135],
@@ -38,6 +41,12 @@
 	var loadedImages = [];
 
 	$.getJSON("images_list.json", data => {
+		$.getJSON("positions_list.json", data => {
+		  for (entry of data) {
+		  	existingFiles.push(parseInt(entry));
+		  }
+		});
+
 	  images = data;
 
 	  for (entry of data) {
@@ -131,10 +140,15 @@
 	}
 
 	function refresh() {
-		showCardIndex();
-		showPosition();
-	    loadImage();
-	  	fillOutsideRectangle();
+		if (images[cardIndex].process && (!skipCardsDone || !existingFiles.includes(cardIndex))) {
+			showCardIndex();
+			showPosition();
+			loadImage();
+			fillOutsideRectangle();
+		} else {
+			cardIndex = cardIndex + 1;
+			refresh();
+		}
 	}
 
 	function showPosition() {

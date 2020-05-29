@@ -8,7 +8,7 @@ var cardList = JSON.parse(fs.readFileSync('images_list.json', 'utf8'));
 var total = 0;
 
 cardList.forEach(function (card, i) {
-	if (fs.existsSync('positions/' + i, 'utf8')) {
+	if (card.process && fs.existsSync('positions/' + i, 'utf8')) {
 		total++;
 
 		var pos = fs.readFileSync('positions/' + i, 'utf8').split(",");
