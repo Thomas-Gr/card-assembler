@@ -2,6 +2,49 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Passion+One:400");
 
+#mosaicContainer {
+	position: relative;
+}
+
+#mosaic_ad {
+	height: 600px;
+	position: absolute;
+	top: 50%;
+	margin: -300px 0 0 0px;
+}
+
+#mosaic {
+	width: 1300px; 
+	height: 900px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -450px 0 0 -650px;
+}
+
+@media screen and (max-height: 900px) {
+	#mosaic {
+		width: 865px; 
+		height: 600px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -300px 0 0 -432px;
+	}
+}
+
+@media screen and (max-height: 600px) {
+	#mosaic {
+		width: 648px; 
+		height: 450px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -225px 0 0 -324px;
+	}
+}
+
+
 /*
 	Full Motion by TEMPLATED
 	templated.co @templatedco
@@ -318,11 +361,11 @@ header h6 + p {
 
 @media screen and (max-width: 1280px) {
 	.thumbnails .box {
-		width: 45%;
+		width: 42%;
 	}
 }
 
-@media screen and (max-width: 736px) {
+@media screen and (max-width: 600px) {
 	.thumbnails .box {
 		width: 100%;
 	}
@@ -387,6 +430,26 @@ header h6 + p {
 .search .inner {
 	padding: 1.5em;
 	width: 100% !important;
+}
+
+#main .inner p {
+	text-align: center;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    line-height: 2;
+}
+
+@media screen and (max-width: 600px) {
+	#main .inner p {
+	    text-align: center;
+	    width: 80%;
+	    margin-left: 10%;
+	    margin-top: 1em;
+	    margin-bottom: 2em;
+	    line-height: 1.7;
+	}
 }
 
 @media screen and (max-width: 480px) {
@@ -610,6 +673,12 @@ input[type="radio"] + label:before {
 	margin-bottom: 2em;
 	background: #2c2c32;
 	text-align: center;
+}
+
+.ad {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .box > :last-child,
@@ -1133,18 +1202,6 @@ input[type="radio"] + label:before {
 				background-color: #8f6bc9;
 			}
 
-		@media screen and (max-width: 480px) {
-
-			input[type="submit"],
-			input[type="reset"],
-			input[type="button"],
-			button,
-			.button {
-				padding: 0;
-			}
-
-		}
-
 /* Poptrox */
 
 	.poptrox-popup {
@@ -1220,20 +1277,11 @@ input[type="radio"] + label:before {
 /* Banner */
 
 	#banner {
-		-moz-align-items: center;
-		-webkit-align-items: center;
-		-ms-align-items: center;
-		align-items: center;
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		-moz-justify-content: center;
-		-webkit-justify-content: center;
-		-ms-justify-content: center;
-		justify-content: center;
-		padding: 8em 4em 6em 4em;
-		min-height: 70vh;
+		height: 400px;
 		background-image: url("../../images/banner.jpg");
 		background-position: center;
 		background-size: cover;
@@ -1244,162 +1292,24 @@ input[type="radio"] + label:before {
 		overflow: hidden;
 	}
 
-		#banner .inner {
-			text-align: center;
-			position: relative;
-			z-index: 2;
-		}
+	#banner > div {
+		width: 50%;
+	}
 
-		#banner h1 {
-			color: #fff;
-			font-size: 5em;
-			font-weight: 400;
-			font-family: 'Passion One', cursive;
-			margin: 0;
-		}
+	#banner img {
+		display: block;
+		width: auto; 
+		height:300px;
+	}
 
-			@media screen and (max-width: 980px) {
-
-				#banner h1 {
-					font-size: 5em;
-				}
-
-			}
-
-			@media screen and (max-width: 736px) {
-
-				#banner h1 {
-					font-size: 3em;
-				}
-
-			}
-
-		#banner p {
-			color: rgba(255, 255, 255, 0.85);
-			font-size: 1.5em;
-			font-weight: 300;
-		}
-
-			@media screen and (max-width: 980px) {
-
-				#banner p {
-					font-size: 1.5em;
-				}
-
-			}
-
-			@media screen and (max-width: 480px) {
-
-				#banner p {
-					font-size: 1.25em;
-				}
-
-			}
-
-		#banner a {
-			color: rgba(255, 255, 255, 0.75);
-			text-decoration: none;
-			border-bottom: 1px dotted;
-		}
-
-			#banner a:hover {
-				color: #FFF;
-				border: none;
-			}
-
-		#banner .more {
-			background-image: url("images/arrow.svg");
-			background-position: center 1.35em;
-			background-repeat: no-repeat;
-			background-size: auto;
-			border: 1px solid #fff;
-			border-radius: 100%;
-			color: rgba(255, 255, 255, 0.75);
+	@media screen and (max-width: 957px) {
+		#banner img {
 			display: block;
-			height: 4em;
-			text-indent: 4em;
-			overflow: hidden;
-			white-space: nowrap;
-			width: 4em;
-			z-index: 2;
-			margin: 0 auto 2em auto;
+			width: 100%; 
+			height: auto; 
 		}
-
-			#banner .more:hover {
-				background-color: rgba(255, 255, 255, 0.05);
-				border: 1px solid #fff;
-				color: #FFF;
-			}
-
-		#banner video {
-			-moz-transform: translateX(50%) translateY(50%);
-			-webkit-transform: translateX(50%) translateY(50%);
-			-ms-transform: translateX(50%) translateY(50%);
-			transform: translateX(50%) translateY(50%);
-			position: absolute;
-			bottom: 50%;
-			right: 50%;
-			width: auto;
-			height: auto;
-			min-width: 100%;
-			min-height: 100%;
-			overflow: hidden;
-		}
-
-		#banner:before {
-			-moz-transition: opacity 3s ease;
-			-webkit-transition: opacity 3s ease;
-			-ms-transition: opacity 3s ease;
-			transition: opacity 3s ease;
-			-moz-transition-delay: 1s;
-			-webkit-transition-delay: 1s;
-			-ms-transition-delay: 1s;
-			transition-delay: 1s;
-			content: '';
-			background-color: #42424f;
-			display: block;
-			height: 100%;
-			left: 0;
-			opacity: 0.45;
-			position: absolute;
-			top: 0;
-			width: 100%;
-			z-index: 1;
-		}
-
-		@media screen and (max-width: 1280px) {
-
-			#banner video {
-				display: none;
-			}
-
-		}
-
-		@media screen and (max-width: 980px) {
-
-			#banner br {
-				display: none;
-			}
-
-		}
-
-		@media screen and (max-width: 736px) {
-
-			#banner {
-				min-height: 0;
-				padding: 6em 2em 4em 2em;
-			}
-
-				#banner br {
-					display: none;
-				}
-
-		}
-
-		body.is-loading #banner:before {
-			opacity: 1;
-		}
-
+	}
+		
 /* Main */
 
 	#main {
