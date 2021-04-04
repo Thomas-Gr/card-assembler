@@ -41,4 +41,17 @@ object ImageDataExtractor {
         greenTotal.toFloat() / 255,
         blueTotal.toFloat() / 255)
   }
+
+  fun getAverageGrayValue(myPicture: BufferedImage, x: Int, y: Int, w: Int, h: Int): Double {
+    var graySum: Long = 0
+
+    for (i in x until x + w) {
+      for (j in y until y + h) {
+        val color = Color(myPicture.getRGB(i, j))
+        graySum += color.blue.toLong() + color.green.toLong() + color.red.toLong()
+      }
+    }
+
+    return graySum.toDouble() / (w * h) / (255 * 3)
+  }
 }

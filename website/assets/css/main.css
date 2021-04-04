@@ -2,48 +2,18 @@
 @import url(font-awesome.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400|Passion+One:400");
 
+option {
+	background-color: rgb(32,32,32);
+	color: rgba(255, 255, 255, 0.75);
+}
+
+optgroup {
+	color: #000;
+}
+
 #mosaicContainer {
 	position: relative;
 }
-
-#mosaic_ad {
-	height: 600px;
-	position: absolute;
-	top: 50%;
-	margin: -300px 0 0 0px;
-}
-
-#mosaic {
-	width: 1300px; 
-	height: 900px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -450px 0 0 -650px;
-}
-
-@media screen and (max-height: 900px) {
-	#mosaic {
-		width: 865px; 
-		height: 600px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin: -300px 0 0 -432px;
-	}
-}
-
-@media screen and (max-height: 600px) {
-	#mosaic {
-		width: 648px; 
-		height: 450px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		margin: -225px 0 0 -324px;
-	}
-}
-
 
 /*
 	Full Motion by TEMPLATED

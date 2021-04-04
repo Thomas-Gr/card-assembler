@@ -16,7 +16,7 @@ repositories {
 }
 
 apply plugin: "application"
-mainClassName = 'S3WebsiteUploader'
+mainClassName = 'OutputGenerator'
 
 dependencies {
     implementation 'org.imgscalr:imgscalr-lib:4.2'

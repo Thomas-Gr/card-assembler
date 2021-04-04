@@ -28,7 +28,7 @@ class Assembler(private val bindings: Map<String, Color>) {
     val g2d = resultImage.createGraphics()
     val usage = mutableMapOf<String, Int>()
 
-    generateRandom(
+    generatePointListInRandomOrder(
         0, targetPicture.width, W,
         0, targetPicture.height, H)
         .forEach {
@@ -95,7 +95,7 @@ class Assembler(private val bindings: Map<String, Color>) {
         + abs(color2.blue - color1.blue))
   }
 
-  private fun generateRandom(
+  private fun generatePointListInRandomOrder(
       startX: Int, endX: Int, incrementX: Int,
       startY: Int, endY: Int, incrementY: Int): List<Pair<Int, Int>> {
     val temporaryResult = mutableListOf<Pair<Int, Int>>()
